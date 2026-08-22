@@ -1,4 +1,9 @@
 /* =========================================
+   Junnu Gift — Main JavaScript
+========================================= */
+
+
+/* =========================================
    ELEMENTS
 ========================================= */
 
@@ -81,7 +86,7 @@ function createFloatingHearts(amount = 15) {
             "floating-heart";
 
         heart.textContent =
-            Math.random() > .45
+            Math.random() > 0.45
                 ? "♥"
                 : "♡";
 
@@ -135,43 +140,62 @@ if (openGiftButton) {
         "click",
         () => {
 
-            /*
-             * Prevent multiple clicks
-             */
+            if (
+                openGiftButton.disabled
+            ) {
+                return;
+            }
 
             openGiftButton.disabled = true;
 
 
+            /* Fade landing */
+
+            if (landing) {
+
+                landing.style.transition =
+                    "opacity 1s ease, transform 1s ease";
+
+                landing.style.opacity =
+                    "0";
+
+                landing.style.transform =
+                    "scale(1.04)";
+            }
+
+
             /*
-             * Landing fade
-             */
-
-            landing.style.transition =
-                "opacity 1s ease, transform 1s ease";
-
-            landing.style.opacity = "0";
-
-            landing.style.transform =
-                "scale(1.04)";
-
-
-            /*
-             * Show letter experience
+             * Give the fade animation
+             * time to finish.
              */
 
             setTimeout(() => {
 
-                landing.style.display =
-                    "none";
+                if (landing) {
+                    landing.style.display =
+                        "none";
+                }
 
                 showSection(
                     letterSection
                 );
 
-                letterSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+
+                /*
+                 * Scroll to the letter
+                 */
+
+                if (letterSection) {
+
+                    setTimeout(() => {
+
+                        letterSection.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                    }, 100);
+                }
 
             }, 900);
 
@@ -191,7 +215,7 @@ if (envelope) {
         () => {
 
             /*
-             * Already opened?
+             * Prevent opening twice.
              */
 
             if (
@@ -204,7 +228,18 @@ if (envelope) {
 
 
             /*
-             * Open envelope
+             * Stop the user from
+             * accidentally clicking again.
+             */
+
+            envelope.style.pointerEvents =
+                "none";
+
+
+            /*
+             * STEP 1
+             *
+             * Envelope flap opens.
              */
 
             envelope.classList.add(
@@ -213,27 +248,62 @@ if (envelope) {
 
 
             /*
-             * Change instruction
+             * Change hint text.
              */
 
             if (envelopeHint) {
 
-                envelopeHint.textContent =
-                    "তোমার জন্য একটা ছোট্ট চিঠি... ❤️";
-
                 envelopeHint.style.opacity =
                     "0";
 
-                envelopeHint.style.transition =
-                    "opacity .5s ease";
-
                 setTimeout(() => {
+
+                    envelopeHint.textContent =
+                        "তোমার জন্য একটা ছোট্ট চিঠি... ❤️";
 
                     envelopeHint.style.opacity =
                         "1";
 
-                }, 900);
+                }, 850);
             }
+
+
+            /*
+             * STEP 2
+             *
+             * Letter animation begins
+             * after the flap has opened.
+             */
+
+            setTimeout(() => {
+
+                const paper =
+                    envelope.querySelector(
+                        ".envelope-paper"
+                    );
+
+                if (!paper) return;
+
+
+                /*
+                 * Restart animation safely.
+                 */
+
+                paper.style.animation =
+                    "none";
+
+                void paper.offsetWidth;
+
+
+                /*
+                 * Paper comes out.
+                 */
+
+                paper.style.animation =
+                    "letterSettle 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards, letterGlow 3s ease-in-out 1.5s infinite";
+
+
+            }, 650);
 
         }
     );
@@ -241,7 +311,7 @@ if (envelope) {
 
 
 /* =========================================
-   CONTINUE
+   CONTINUE BUTTON
 ========================================= */
 
 if (continueButton) {
@@ -254,12 +324,19 @@ if (continueButton) {
                 littleThingsSection
             );
 
+
             setTimeout(() => {
 
-                littleThingsSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+                if (
+                    littleThingsSection
+                ) {
+
+                    littleThingsSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
 
             }, 100);
 
@@ -269,7 +346,7 @@ if (continueButton) {
 
 
 /* =========================================
-   START BACKGROUND EFFECTS
+   INITIALIZE
 ========================================= */
 
 createStars();
