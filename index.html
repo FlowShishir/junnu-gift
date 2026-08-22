@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#090108">
+
+    <title>A Tiny Surprise — Junnu ❤️</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         BACKGROUND EFFECTS
+    ========================================== -->
+
+    <div id="stars"></div>
+    <div id="floatingHearts"></div>
+
+    <div class="ambient ambient-1"></div>
+    <div class="ambient ambient-2"></div>
+
+
+    <!-- =========================================
+         LANDING SCREEN
+    ========================================== -->
+
+    <main id="landing" class="landing-screen">
+
+        <div class="landing-content">
+
+            <!-- Top small text -->
+            <p class="top-title">
+                A TINY SURPRISE, MADE WITH LOVE
+            </p>
+
+
+            <!-- Name -->
+            <div class="name-container">
+
+                <h1 class="name">
+                    Junnu
+                </h1>
+
+                <div class="big-heart">
+                    ❤️
+                </div>
+
+            </div>
+
+
+            <!-- Bengali subtitle -->
+            <p class="subtitle">
+                একটা ছোট উপহার... শুধু তোমার জন্য।
+            </p>
+
+
+            <!-- Open Gift Button -->
+            <button
+                id="openGiftButton"
+                class="open-gift-button"
+                type="button"
+            >
+
+                <span class="button-heart">
+                    ♡
+                </span>
+
+                <span>
+                    Open Your Gift
+                </span>
+
+            </button>
+
+
+            <!-- Hint -->
+            <p class="tap-hint">
+                একবার চাপ দাও...
+            </p>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================
+         LETTER SECTION
+         Initially hidden
+    ========================================== -->
+
+    <section
+        id="letterSection"
+        class="letter-section hidden-section"
+    >
+
+        <div class="section-container">
+
+            <p class="section-label">
+                A LITTLE LETTER
+            </p>
+
+            <h2>
+                একটা কথা ছিল...
+            </h2>
+
+
+            <div class="letter-card">
+
+                <div class="letter-card-top">
+                    💗
+                </div>
+
+                <h3>
+                    শুধু তোমার জন্য
+                </h3>
+
+                <div class="letter-text">
+
+                    <p>
+                        এই ছোট্ট জায়গাটার প্রতিটা অংশ
+                        তোমাকে ভেবেই তৈরি করা।
+                    </p>
+
+                    <p>
+                        তোমার জন্য আরও অনেক কিছু
+                        লুকিয়ে রাখা আছে...
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="continueButton"
+                    class="continue-button"
+                    type="button"
+                >
+                    Continue
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         NEXT SECTION
+         Temporary — পরে আমরা replace করব
+    ========================================== -->
+
+    <section
+        id="littleThingsSection"
+        class="little-things-section hidden-section"
+    >
+
+        <div class="section-container">
+
+            <p class="section-label">
+                LITTLE THINGS THAT MATTER
+            </p>
+
+            <h2>
+                কিছু ছোট কথা ❤️
+            </h2>
+
+
+            <div class="little-cards">
+
+                <div class="little-card">
+                    <span class="card-number">01</span>
+
+                    <h3>
+                        My Heartbeat
+                    </h3>
+
+                    <p>
+                        কিছু মানুষ শুধু মানুষ থাকে না...
+                    </p>
+                </div>
+
+
+                <div class="little-card">
+                    <span class="card-number">02</span>
+
+                    <h3>
+                        My Safe Place
+                    </h3>
+
+                    <p>
+                        কিছু মানুষ হয়ে যায় শান্তির জায়গা।
+                    </p>
+                </div>
+
+
+                <div class="little-card">
+                    <span class="card-number">03</span>
+
+                    <h3>
+                        My Forever Person
+                    </h3>
+
+                    <p>
+                        কিছু মানুষকে হৃদয় থেকে সরানো যায় না।
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="js/script.js"></script>
+
+</body>
+  </html>
