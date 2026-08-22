@@ -1,5 +1,5 @@
 /* =========================================
-   Junnu Gift — Main JavaScript
+   JUNNU GIFT — MAIN JAVASCRIPT
 ========================================= */
 
 
@@ -36,12 +36,14 @@ const floatingHearts =
 
 
 /* =========================================
-   STARS
+   CREATE STARS
 ========================================= */
 
 function createStars(amount = 65) {
 
     if (!stars) return;
+
+    stars.innerHTML = "";
 
     for (let i = 0; i < amount; i++) {
 
@@ -51,18 +53,16 @@ function createStars(amount = 65) {
         star.className = "star";
 
         star.style.left =
-            Math.random() * 100 + "%";
+            `${Math.random() * 100}%`;
 
         star.style.top =
-            Math.random() * 100 + "%";
-
-        star.style.setProperty(
-            "--duration",
-            `${1.5 + Math.random() * 4}s`
-        );
+            `${Math.random() * 100}%`;
 
         star.style.animationDelay =
             `${Math.random() * 4}s`;
+
+        star.style.animationDuration =
+            `${1.5 + Math.random() * 4}s`;
 
         stars.appendChild(star);
     }
@@ -70,12 +70,14 @@ function createStars(amount = 65) {
 
 
 /* =========================================
-   FLOATING HEARTS
+   CREATE FLOATING HEARTS
 ========================================= */
 
 function createFloatingHearts(amount = 15) {
 
     if (!floatingHearts) return;
+
+    floatingHearts.innerHTML = "";
 
     for (let i = 0; i < amount; i++) {
 
@@ -91,21 +93,19 @@ function createFloatingHearts(amount = 15) {
                 : "♡";
 
         heart.style.left =
-            Math.random() * 100 + "%";
+            `${Math.random() * 100}%`;
 
         heart.style.top =
-            75 + Math.random() * 25 + "%";
+            `${75 + Math.random() * 25}%`;
 
         heart.style.fontSize =
             `${12 + Math.random() * 18}px`;
 
-        heart.style.setProperty(
-            "--duration",
-            `${7 + Math.random() * 7}s`
-        );
-
         heart.style.animationDelay =
             `${Math.random() * 8}s`;
+
+        heart.style.animationDuration =
+            `${7 + Math.random() * 7}s`;
 
         floatingHearts.appendChild(heart);
     }
@@ -131,7 +131,7 @@ function showSection(section) {
 
 
 /* =========================================
-   OPEN GIFT
+   OPEN YOUR GIFT
 ========================================= */
 
 if (openGiftButton) {
@@ -149,7 +149,7 @@ if (openGiftButton) {
             openGiftButton.disabled = true;
 
 
-            /* Fade landing */
+            /* Landing fade */
 
             if (landing) {
 
@@ -165,16 +165,21 @@ if (openGiftButton) {
 
 
             /*
-             * Give the fade animation
-             * time to finish.
+             * Wait for landing animation
              */
 
             setTimeout(() => {
 
                 if (landing) {
+
                     landing.style.display =
                         "none";
                 }
+
+
+                /*
+                 * Show letter section
+                 */
 
                 showSection(
                     letterSection
@@ -182,20 +187,21 @@ if (openGiftButton) {
 
 
                 /*
-                 * Scroll to the letter
+                 * Scroll smoothly
                  */
 
-                if (letterSection) {
+                setTimeout(() => {
 
-                    setTimeout(() => {
+                    if (letterSection) {
 
                         letterSection.scrollIntoView({
                             behavior: "smooth",
                             block: "start"
                         });
 
-                    }, 100);
-                }
+                    }
+
+                }, 120);
 
             }, 900);
 
@@ -215,7 +221,7 @@ if (envelope) {
         () => {
 
             /*
-             * Prevent opening twice.
+             * Already opened?
              */
 
             if (
@@ -228,8 +234,7 @@ if (envelope) {
 
 
             /*
-             * Stop the user from
-             * accidentally clicking again.
+             * Prevent multiple taps
              */
 
             envelope.style.pointerEvents =
@@ -237,9 +242,10 @@ if (envelope) {
 
 
             /*
+             * =================================
              * STEP 1
-             *
-             * Envelope flap opens.
+             * Envelope opens
+             * =================================
              */
 
             envelope.classList.add(
@@ -248,13 +254,17 @@ if (envelope) {
 
 
             /*
-             * Change hint text.
+             * Change instruction text
              */
 
             if (envelopeHint) {
 
+                envelopeHint.style.transition =
+                    "opacity .4s ease";
+
                 envelopeHint.style.opacity =
                     "0";
+
 
                 setTimeout(() => {
 
@@ -265,14 +275,19 @@ if (envelope) {
                         "1";
 
                 }, 850);
+
             }
 
 
             /*
+             * =================================
              * STEP 2
+             * Paper comes out automatically
              *
-             * Letter animation begins
-             * after the flap has opened.
+             * CSS handles the actual movement.
+             * We only add the final glow class
+             * after the animation finishes.
+             * =================================
              */
 
             setTimeout(() => {
@@ -282,28 +297,16 @@ if (envelope) {
                         ".envelope-paper"
                     );
 
-                if (!paper) return;
 
+                if (paper) {
 
-                /*
-                 * Restart animation safely.
-                 */
+                    paper.classList.add(
+                        "finished"
+                    );
 
-                paper.style.animation =
-                    "none";
+                }
 
-                void paper.offsetWidth;
-
-
-                /*
-                 * Paper comes out.
-                 */
-
-                paper.style.animation =
-                    "letterSettle 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards, letterGlow 3s ease-in-out 1.5s infinite";
-
-
-            }, 650);
+            }, 2300);
 
         }
     );
@@ -311,7 +314,7 @@ if (envelope) {
 
 
 /* =========================================
-   CONTINUE BUTTON
+   CONTINUE / MORE BUTTON
 ========================================= */
 
 if (continueButton) {
@@ -320,10 +323,18 @@ if (continueButton) {
         "click",
         () => {
 
+            /*
+             * Show next section
+             */
+
             showSection(
                 littleThingsSection
             );
 
+
+            /*
+             * Scroll to next section
+             */
 
             setTimeout(() => {
 
@@ -338,7 +349,7 @@ if (continueButton) {
 
                 }
 
-            }, 100);
+            }, 120);
 
         }
     );
@@ -346,9 +357,25 @@ if (continueButton) {
 
 
 /* =========================================
-   INITIALIZE
+   INITIALIZE WEBSITE
 ========================================= */
 
 createStars();
 
 createFloatingHearts();
+
+
+/* =========================================
+   PAGE LOAD
+========================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        document.body.classList.add(
+            "page-loaded"
+        );
+
+    }
+);
