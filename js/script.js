@@ -5,14 +5,20 @@
 const openGiftButton =
     document.getElementById("openGiftButton");
 
-const continueButton =
-    document.getElementById("continueButton");
-
 const landing =
     document.getElementById("landing");
 
 const letterSection =
     document.getElementById("letterSection");
+
+const envelope =
+    document.getElementById("envelope");
+
+const envelopeHint =
+    document.getElementById("envelopeHint");
+
+const continueButton =
+    document.getElementById("continueButton");
 
 const littleThingsSection =
     document.getElementById("littleThingsSection");
@@ -25,10 +31,12 @@ const floatingHearts =
 
 
 /* =========================================
-   CREATE STARS
+   STARS
 ========================================= */
 
-function createStars(amount = 55) {
+function createStars(amount = 65) {
+
+    if (!stars) return;
 
     for (let i = 0; i < amount; i++) {
 
@@ -57,10 +65,12 @@ function createStars(amount = 55) {
 
 
 /* =========================================
-   CREATE FLOATING HEARTS
+   FLOATING HEARTS
 ========================================= */
 
-function createFloatingHearts(amount = 12) {
+function createFloatingHearts(amount = 15) {
+
+    if (!floatingHearts) return;
 
     for (let i = 0; i < amount; i++) {
 
@@ -70,8 +80,8 @@ function createFloatingHearts(amount = 12) {
         heart.className =
             "floating-heart";
 
-        heart.innerHTML =
-            Math.random() > .5
+        heart.textContent =
+            Math.random() > .45
                 ? "♥"
                 : "♡";
 
@@ -79,10 +89,10 @@ function createFloatingHearts(amount = 12) {
             Math.random() * 100 + "%";
 
         heart.style.top =
-            70 + Math.random() * 30 + "%";
+            75 + Math.random() * 25 + "%";
 
         heart.style.fontSize =
-            12 + Math.random() * 18 + "px";
+            `${12 + Math.random() * 18}px`;
 
         heart.style.setProperty(
             "--duration",
@@ -103,6 +113,8 @@ function createFloatingHearts(amount = 12) {
 
 function showSection(section) {
 
+    if (!section) return;
+
     section.classList.remove(
         "hidden-section"
     );
@@ -117,75 +129,147 @@ function showSection(section) {
    OPEN GIFT
 ========================================= */
 
-openGiftButton.addEventListener(
-    "click",
-    function () {
+if (openGiftButton) {
 
-        /*
-         * Hide landing screen
-         */
+    openGiftButton.addEventListener(
+        "click",
+        () => {
 
-        landing.style.transition =
-            "opacity 1s ease, transform 1s ease";
+            /*
+             * Prevent multiple clicks
+             */
 
-        landing.style.opacity = "0";
-
-        landing.style.transform =
-            "scale(1.03)";
+            openGiftButton.disabled = true;
 
 
-        /*
-         * After animation,
-         * show letter
-         */
+            /*
+             * Landing fade
+             */
 
-        setTimeout(() => {
+            landing.style.transition =
+                "opacity 1s ease, transform 1s ease";
 
-            landing.style.display =
-                "none";
+            landing.style.opacity = "0";
 
-            showSection(
-                letterSection
+            landing.style.transform =
+                "scale(1.04)";
+
+
+            /*
+             * Show letter experience
+             */
+
+            setTimeout(() => {
+
+                landing.style.display =
+                    "none";
+
+                showSection(
+                    letterSection
+                );
+
+                letterSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }, 900);
+
+        }
+    );
+}
+
+
+/* =========================================
+   ENVELOPE OPEN
+========================================= */
+
+if (envelope) {
+
+    envelope.addEventListener(
+        "click",
+        () => {
+
+            /*
+             * Already opened?
+             */
+
+            if (
+                envelope.classList.contains(
+                    "opened"
+                )
+            ) {
+                return;
+            }
+
+
+            /*
+             * Open envelope
+             */
+
+            envelope.classList.add(
+                "opened"
             );
 
-            letterSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
 
-        }, 850);
+            /*
+             * Change instruction
+             */
 
-    }
-);
+            if (envelopeHint) {
+
+                envelopeHint.textContent =
+                    "তোমার জন্য একটা ছোট্ট চিঠি... ❤️";
+
+                envelopeHint.style.opacity =
+                    "0";
+
+                envelopeHint.style.transition =
+                    "opacity .5s ease";
+
+                setTimeout(() => {
+
+                    envelopeHint.style.opacity =
+                        "1";
+
+                }, 900);
+            }
+
+        }
+    );
+}
 
 
 /* =========================================
    CONTINUE
 ========================================= */
 
-continueButton.addEventListener(
-    "click",
-    function () {
+if (continueButton) {
 
-        showSection(
-            littleThingsSection
-        );
+    continueButton.addEventListener(
+        "click",
+        () => {
 
-        setTimeout(() => {
+            showSection(
+                littleThingsSection
+            );
 
-            littleThingsSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+            setTimeout(() => {
 
-        }, 100);
+                littleThingsSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
-    }
-);
+            }, 100);
+
+        }
+    );
+}
 
 
 /* =========================================
-   START EFFECTS
+   START BACKGROUND EFFECTS
 ========================================= */
 
 createStars();
