@@ -1,5 +1,5 @@
 /* =========================================
-   RESET
+   Junnu Gift — Main Stylesheet
 ========================================= */
 
 * {
@@ -15,9 +15,15 @@ html {
 
 body {
     min-width: 320px;
+    min-height: 100vh;
+
     background: #050106;
-    color: #fff;
-    font-family: "Noto Serif Bengali", serif;
+    color: #ffffff;
+
+    font-family:
+        "Noto Serif Bengali",
+        serif;
+
     overflow-x: hidden;
 }
 
@@ -28,61 +34,75 @@ body {
 
 body::before {
     content: "";
+
     position: fixed;
     inset: 0;
-    z-index: -10;
+
+    z-index: -20;
 
     background:
         radial-gradient(
-            circle at 50% 15%,
-            rgba(115, 10, 72, .58),
+            circle at 50% 12%,
+            rgba(120, 12, 76, 0.58),
             transparent 34%
         ),
+
         radial-gradient(
-            circle at 15% 65%,
-            rgba(103, 12, 69, .25),
+            circle at 8% 65%,
+            rgba(112, 12, 72, 0.24),
             transparent 30%
         ),
+
         radial-gradient(
-            circle at 85% 75%,
-            rgba(99, 10, 67, .22),
+            circle at 92% 72%,
+            rgba(101, 10, 68, 0.22),
             transparent 32%
         ),
+
         linear-gradient(
             180deg,
             #350c29 0%,
-            #180511 45%,
+            #180511 48%,
             #050106 100%
         );
 }
 
 
 /* =========================================
-   AMBIENT GLOW
+   AMBIENT LIGHT
 ========================================= */
 
 .ambient {
     position: fixed;
+
     width: 45vw;
     height: 45vw;
+
     max-width: 520px;
     max-height: 520px;
+
     border-radius: 50%;
+
     filter: blur(90px);
-    opacity: .16;
+
+    opacity: 0.16;
+
     pointer-events: none;
+
     z-index: 0;
 }
 
 .ambient-1 {
     top: -10%;
     left: -20%;
+
     background: #ff3d9c;
 }
 
 .ambient-2 {
     right: -20%;
     bottom: -5%;
+
     background: #8d246d;
 }
 
@@ -93,19 +113,27 @@ body::before {
 
 #stars {
     position: fixed;
+
     inset: 0;
+
     z-index: 1;
+
     pointer-events: none;
+
     overflow: hidden;
 }
 
 .star {
     position: absolute;
+
     width: 3px;
     height: 3px;
+
     border-radius: 50%;
-    background: #fff;
-    opacity: .4;
+
+    background: #ffffff;
+
+    opacity: 0.4;
 
     animation:
         twinkle
@@ -121,15 +149,22 @@ body::before {
 
 #floatingHearts {
     position: fixed;
+
     inset: 0;
+
     z-index: 2;
+
     pointer-events: none;
+
     overflow: hidden;
 }
 
 .floating-heart {
     position: absolute;
-    color: rgba(255, 112, 184, .38);
+
+    color:
+        rgba(255, 112, 184, 0.38);
+
     font-family: Arial, sans-serif;
 
     animation:
@@ -141,17 +176,19 @@ body::before {
 
 
 /* =========================================
-   LANDING
+   LANDING SCREEN
 ========================================= */
 
 .landing-screen {
     position: relative;
+
     z-index: 5;
 
     min-height: 100svh;
     min-height: 100dvh;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -164,9 +201,13 @@ body::before {
 
     text-align: center;
 
-    padding: 35px 15px 80px;
+    padding:
+        35px
+        15px
+        80px;
 
     position: relative;
+
     z-index: 10;
 
     animation:
@@ -184,12 +225,18 @@ body::before {
 .top-title {
     color: #f4dbe8;
 
-    font-family: "Playfair Display", serif;
+    font-family:
+        "Playfair Display",
+        serif;
 
     font-size:
-        clamp(.62rem, 2.7vw, 1rem);
+        clamp(
+            0.62rem,
+            2.7vw,
+            1rem
+        );
 
-    letter-spacing: .30em;
+    letter-spacing: 0.30em;
 
     white-space: nowrap;
 
@@ -203,41 +250,57 @@ body::before {
 
 .name-container {
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     gap: 8px;
 }
 
 .name {
-    font-family: "Playfair Display", serif;
+    font-family:
+        "Playfair Display",
+        serif;
 
     font-size:
-        clamp(4.8rem, 21vw, 9rem);
+        clamp(
+            4.8rem,
+            21vw,
+            9rem
+        );
 
-    line-height: .9;
+    line-height: 0.9;
 
     font-style: italic;
+
     font-weight: 600;
 
     color: #ff91c5;
 
     text-shadow:
-        0 0 15px rgba(255, 110, 180, .35),
-        0 0 45px rgba(255, 55, 155, .18);
+        0 0 15px
+        rgba(255, 110, 180, 0.35),
+
+        0 0 45px
+        rgba(255, 55, 155, 0.18);
 }
 
 .big-heart {
     font-family: Arial, sans-serif;
 
     font-size:
-        clamp(3.8rem, 17vw, 7rem);
+        clamp(
+            3.8rem,
+            17vw,
+            7rem
+        );
 
     line-height: 1;
 
     filter:
         drop-shadow(
             0 8px 18px
-            rgba(255, 30, 50, .28)
+            rgba(255, 30, 50, 0.28)
         );
 
     animation:
@@ -256,28 +319,36 @@ body::before {
     color: #f2dce7;
 
     font-size:
-        clamp(1rem, 4.3vw, 1.45rem);
+        clamp(
+            1rem,
+            4.3vw,
+            1.45rem
+        );
 
     margin-top: 15px;
+
     margin-bottom: 34px;
 
     text-shadow:
-        0 3px 15px rgba(0,0,0,.4);
+        0 3px 15px
+        rgba(0, 0, 0, 0.4);
 }
 
 
 /* =========================================
-   OPEN BUTTON
+   OPEN GIFT BUTTON
 ========================================= */
 
 .open-gift-button {
     position: relative;
 
     width: min(88vw, 430px);
+
     min-height: 72px;
 
-    border: 1px solid
-        rgba(255, 210, 234, .45);
+    border:
+        1px solid
+        rgba(255, 210, 234, 0.45);
 
     border-radius: 999px;
 
@@ -286,11 +357,13 @@ body::before {
     cursor: pointer;
 
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
+
     gap: 12px;
 
-    color: #fff;
+    color: #ffffff;
 
     font-family:
         "Playfair Display",
@@ -298,7 +371,11 @@ body::before {
         serif;
 
     font-size:
-        clamp(1.2rem, 5vw, 1.7rem);
+        clamp(
+            1.2rem,
+            5vw,
+            1.7rem
+        );
 
     font-weight: 700;
 
@@ -311,29 +388,31 @@ body::before {
 
     box-shadow:
         0 15px 35px
-        rgba(244, 40, 142, .28),
+        rgba(244, 40, 142, 0.28),
 
         0 0 35px
-        rgba(255, 61, 160, .20),
+        rgba(255, 61, 160, 0.20),
 
         inset 0 1px 0
-        rgba(255,255,255,.35);
+        rgba(255, 255, 255, 0.35);
 
     transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .open-gift-button::before {
     content: "";
 
     position: absolute;
+
     inset: -5px;
 
     border-radius: inherit;
 
-    border: 1px solid
-        rgba(255, 116, 188, .28);
+    border:
+        1px solid
+        rgba(255, 116, 188, 0.28);
 
     animation:
         buttonGlow
@@ -343,17 +422,25 @@ body::before {
 }
 
 .open-gift-button:active {
-    transform: scale(.95);
+    transform: scale(0.95);
+}
+
+.open-gift-button:disabled {
+    cursor: default;
 }
 
 .button-heart {
     font-family: Arial, sans-serif;
+
     font-size: 1.6em;
 }
 
 .tap-hint {
     margin-top: 18px;
-    color: rgba(242, 211, 226, .70);
+
+    color:
+        rgba(242, 211, 226, 0.70);
+
     font-size: 1rem;
 }
 
@@ -364,6 +451,7 @@ body::before {
 
 .letter-section {
     position: relative;
+
     z-index: 5;
 
     min-height: 100svh;
@@ -375,19 +463,21 @@ body::before {
         90px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     background:
         radial-gradient(
             circle at 50% 10%,
-            rgba(116, 16, 77, .35),
+            rgba(116, 16, 77, 0.35),
             transparent 38%
         );
 }
 
 .section-container {
     width: 94%;
+
     max-width: 700px;
 
     text-align: center;
@@ -401,11 +491,13 @@ body::before {
 .section-label {
     color: #e7b5cd;
 
-    font-family: "Playfair Display", serif;
+    font-family:
+        "Playfair Display",
+        serif;
 
-    font-size: .78rem;
+    font-size: 0.78rem;
 
-    letter-spacing: .28em;
+    letter-spacing: 0.28em;
 
     margin-bottom: 8px;
 }
@@ -414,13 +506,17 @@ body::before {
     color: #ff9dca;
 
     font-size:
-        clamp(2rem, 8vw, 3.4rem);
+        clamp(
+            2rem,
+            8vw,
+            3.4rem
+        );
 
     margin-bottom: 30px;
 
     text-shadow:
         0 0 25px
-        rgba(255, 72, 163, .18);
+        rgba(255, 72, 163, 0.18);
 }
 
 
@@ -442,25 +538,25 @@ body::before {
 
     border:
         1px solid
-        rgba(255, 185, 220, .20);
+        rgba(255, 185, 220, 0.20);
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.095),
-            rgba(255,255,255,.025)
+            rgba(255, 255, 255, 0.095),
+            rgba(255, 255, 255, 0.025)
         );
 
     backdrop-filter: blur(15px);
 
     box-shadow:
         0 30px 80px
-        rgba(0,0,0,.42),
+        rgba(0, 0, 0, 0.42),
 
         inset 0 1px 0
-        rgba(255,255,255,.08);
+        rgba(255, 255, 255, 0.08);
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 
@@ -472,7 +568,7 @@ body::before {
     position: absolute;
 
     color:
-        rgba(255, 165, 208, .48);
+        rgba(255, 165, 208, 0.48);
 
     font-family:
         "Playfair Display",
@@ -484,7 +580,7 @@ body::before {
 
     text-shadow:
         0 0 15px
-        rgba(255, 76, 165, .25);
+        rgba(255, 76, 165, 0.25);
 
     animation:
         wordFloat
@@ -496,35 +592,44 @@ body::before {
 .word-1 {
     top: 10%;
     left: 8%;
+
     font-size: 1rem;
 }
 
 .word-2 {
     top: 18%;
     right: 8%;
-    font-size: .9rem;
+
+    font-size: 0.9rem;
+
     animation-delay: 1s;
 }
 
 .word-3 {
     bottom: 18%;
     left: 7%;
+
     font-size: 1rem;
+
     animation-delay: 2s;
 }
 
 .word-4 {
     bottom: 13%;
     right: 9%;
+
     font-size: 1rem;
+
     animation-delay: 1.5s;
 }
 
 .word-5 {
     top: 42%;
     right: 4%;
+
     font-size: 1.6rem;
-    animation-delay: .5s;
+
+    animation-delay: 0.5s;
 }
 
 
@@ -539,6 +644,7 @@ body::before {
     top: 52%;
 
     width: min(82vw, 390px);
+
     height: 260px;
 
     transform:
@@ -547,13 +653,16 @@ body::before {
     filter:
         drop-shadow(
             0 25px 30px
-            rgba(0,0,0,.38)
+            rgba(0, 0, 0, 0.38)
         );
 
     cursor: pointer;
 
+    perspective: 1000px;
+
     transition:
-        transform 1s ease;
+        transform 1s
+        cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 
@@ -563,6 +672,7 @@ body::before {
 
 .envelope-back {
     position: absolute;
+
     inset: 0;
 
     background:
@@ -580,12 +690,15 @@ body::before {
 
     box-shadow:
         inset 0 1px 0
-        rgba(255,255,255,.4);
+        rgba(255, 255, 255, 0.4);
+
+    z-index: 1;
 }
 
 
 /* =========================================
    PAPER
+   CLOSED = COMPLETELY INSIDE ENVELOPE
 ========================================= */
 
 .envelope-paper {
@@ -608,20 +721,35 @@ body::before {
 
     color: #4d2737;
 
-    overflow: hidden;
+    overflow-y: auto;
+
+    /*
+       IMPORTANT:
+       The paper is hidden inside
+       the envelope when closed.
+    */
 
     transform:
-        translateY(42%);
+        translateY(88%)
+        scale(0.92);
+
+    transform-origin:
+        center bottom;
 
     transition:
-        transform 1.2s
-        cubic-bezier(.2,.8,.2,1);
+        transform 1.5s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        );
 
-    z-index: 2;
+    z-index: 3;
 
     box-shadow:
         0 8px 18px
-        rgba(0,0,0,.18);
+        rgba(0, 0, 0, 0.18);
 }
 
 
@@ -637,9 +765,7 @@ body::before {
 
     text-align: left;
 
-    height: 100%;
-
-    overflow-y: auto;
+    min-height: 100%;
 }
 
 .paper-title {
@@ -659,7 +785,7 @@ body::before {
 }
 
 .paper-text {
-    font-size: .94rem;
+    font-size: 0.94rem;
 
     line-height: 1.9;
 
@@ -708,18 +834,26 @@ body::before {
             50% 100%
         );
 
-    transform-origin: top center;
+    transform-origin:
+        top center;
+
+    transform-style: preserve-3d;
 
     transition:
-        transform 1s
-        cubic-bezier(.2,.8,.2,1);
+        transform 0.8s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        );
 
-    z-index: 5;
+    z-index: 6;
 
     filter:
         drop-shadow(
             0 3px 3px
-            rgba(0,0,0,.12)
+            rgba(0, 0, 0, 0.12)
         );
 }
 
@@ -733,13 +867,13 @@ body::before {
 
     inset: 0;
 
-    z-index: 4;
+    z-index: 5;
 
     background:
         linear-gradient(
             145deg,
-            rgba(245,154,192,.82),
-            rgba(190,63,119,.9)
+            rgba(245, 154, 192, 0.82),
+            rgba(190, 63, 119, 0.90)
         );
 
     clip-path:
@@ -773,12 +907,12 @@ body::before {
     filter:
         drop-shadow(
             0 4px 8px
-            rgba(80,0,30,.25)
+            rgba(80, 0, 30, 0.25)
         );
 
     transition:
-        transform .5s ease,
-        opacity .5s ease;
+        opacity 0.45s ease,
+        transform 0.45s ease;
 }
 
 
@@ -795,15 +929,18 @@ body::before {
     bottom: 25px;
 
     color:
-        rgba(255, 224, 239, .78);
+        rgba(255, 224, 239, 0.78);
 
-    font-size: .95rem;
+    font-size: 0.95rem;
 
     animation:
         hintPulse
         2s
         ease-in-out
         infinite;
+
+    transition:
+        opacity 0.5s ease;
 }
 
 
@@ -814,25 +951,50 @@ body::before {
 .envelope.opened {
     transform:
         translate(-50%, -50%)
-        translateY(20px);
+        translateY(15px);
 }
+
+
+/*
+   Flap opens.
+*/
 
 .envelope.opened .envelope-flap {
     transform:
         rotateX(180deg);
+
+    z-index: 7;
 }
+
+
+/*
+   Paper comes OUT of the envelope
+   and moves toward the viewer.
+*/
 
 .envelope.opened .envelope-paper {
     transform:
-        translateY(-35%);
+        translateY(-48%)
+        scale(1.08);
+
+    z-index: 10;
+
+    box-shadow:
+        0 25px 55px
+        rgba(0, 0, 0, 0.35);
 }
+
+
+/*
+   Heart disappears.
+*/
 
 .envelope.opened .envelope-heart {
     opacity: 0;
 
     transform:
         translate(-50%, -50%)
-        scale(.4);
+        scale(0.4);
 }
 
 
@@ -851,12 +1013,12 @@ body::before {
 
     border:
         1px solid
-        rgba(255, 160, 207, .32);
+        rgba(255, 160, 207, 0.32);
 
-    color: #fff;
+    color: #ffffff;
 
     background:
-        rgba(245, 63, 148, .16);
+        rgba(245, 63, 148, 0.16);
 
     font-family:
         "Noto Serif Bengali",
@@ -867,12 +1029,12 @@ body::before {
     cursor: pointer;
 
     transition:
-        transform .25s ease,
-        background .25s ease;
+        transform 0.25s ease,
+        background 0.25s ease;
 }
 
 .continue-button:active {
-    transform: scale(.95);
+    transform: scale(0.95);
 }
 
 
@@ -888,6 +1050,7 @@ body::before {
         20px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -901,6 +1064,7 @@ body::before {
 
 .little-cards {
     display: grid;
+
     gap: 16px;
 }
 
@@ -913,16 +1077,16 @@ body::before {
 
     border:
         1px solid
-        rgba(255,174,216,.18);
+        rgba(255, 174, 216, 0.18);
 
     background:
-        rgba(255,255,255,.055);
+        rgba(255, 255, 255, 0.055);
 
     backdrop-filter: blur(12px);
 
     box-shadow:
         0 20px 50px
-        rgba(0,0,0,.25);
+        rgba(0, 0, 0, 0.25);
 }
 
 .card-number {
@@ -951,11 +1115,53 @@ body::before {
 
 
 /* =========================================
-   HIDDEN
+   HIDDEN SECTION
 ========================================= */
 
 .hidden-section {
     display: none;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .letter-section {
+        padding-top: 50px;
+    }
+
+    .letter-experience {
+        min-height: 540px;
+
+        border-radius: 26px;
+    }
+
+    .envelope {
+        width: min(86vw, 350px);
+
+        height: 230px;
+    }
+
+    .paper-content {
+        padding:
+            22px
+            17px;
+            }
+
+    .paper-text {
+        font-size: 0.88rem;
+
+        line-height: 1.8;
+    }
+
+    .envelope.opened .envelope-paper {
+        transform:
+            translateY(-52%)
+            scale(1.04);
+    }
 }
 
 
@@ -972,10 +1178,10 @@ body::before {
 
         box-shadow:
             0 18px 45px
-            rgba(244,40,142,.35),
+            rgba(244, 40, 142, 0.35),
 
             0 0 50px
-            rgba(255,61,160,.27);
+            rgba(255, 61, 160, 0.27);
     }
 
     .envelope:hover {
@@ -986,6 +1192,6 @@ body::before {
 
     .continue-button:hover {
         background:
-            rgba(245,63,148,.28);
+            rgba(245, 63, 148, 0.28);
     }
-   }
+}
