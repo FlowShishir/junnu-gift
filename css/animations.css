@@ -1,14 +1,11 @@
 /* =========================================
-   JUNNU GIFT — ENVELOPE ANIMATION
+   JUNNU GIFT — ANIMATIONS
 ========================================= */
 
-
-/* ---------- General entrance ---------- */
-
-@keyframes sectionReveal {
+@keyframes landingEntrance {
     from {
         opacity: 0;
-        transform: translateY(35px) scale(.98);
+        transform: translateY(30px) scale(.96);
     }
 
     to {
@@ -17,335 +14,22 @@
     }
 }
 
-.sectionReveal {
-    animation:
-        sectionReveal
-        1s
-        cubic-bezier(.16, 1, .3, 1)
-        forwards;
-}
 
-
-/* =========================================
-   ENVELOPE
-========================================= */
-
-.envelope {
-    position: relative;
-    overflow: visible;
-}
-
-
-/* =========================================
-   PAPER — IMPORTANT
-   প্রথমে পুরোপুরি envelope-এর ভিতরে থাকবে
-========================================= */
-
-.envelope .envelope-paper {
-    position: absolute;
-
-    left: 50%;
-
-    /*
-       Paper-এর width/height আগের CSS
-       থেকে থাকলে সেটা ব্যবহার করবে
-    */
-
-    z-index: 2;
-
-    opacity: 0;
-
-    /*
-       সবচেয়ে গুরুত্বপূর্ণ অংশ:
-       শুরুতে paper অনেক নিচে থাকবে,
-       তাই envelope-এর নিচ দিয়েও দেখা যাবে না।
-    */
-
-    transform:
-        translate(-50%, 115%)
-        scale(.94);
-
-    transform-origin: center bottom;
-
-    pointer-events: none;
-
-    transition: none;
-}
-
-
-/* =========================================
-   ENVELOPE BODY
-   Paper-এর উপর থাকবে
-========================================= */
-
-.envelope::after {
-    position: relative;
-
-    z-index: 10;
-}
-
-
-/*
-   Envelope-এর মূল body যদি child element হয়,
-   সেটাকে paper-এর সামনে রাখা
-*/
-
-.envelope > *:not(.envelope-paper) {
-    position: relative;
-}
-
-
-/* =========================================
-   CLOSED STATE
-========================================= */
-
-/*
-   Envelope বন্ধ থাকা অবস্থায় paper একদম
-   দেখা যাবে না।
-*/
-
-.envelope:not(.opened) .envelope-paper {
-    opacity: 0;
-
-    transform:
-        translate(-50%, 115%)
-        scale(.94);
-
-    z-index: 2;
-}
-
-
-/* =========================================
-   ENVELOPE FLAP
-========================================= */
-
-.envelope-flap {
-    position: relative;
-
-    z-index: 20;
-
-    transform-origin: top center;
-
-    transform:
-        rotateX(0deg);
-
-    transition:
-        transform
-        .7s
-        cubic-bezier(.16, 1, .3, 1);
-
-    backface-visibility: hidden;
-}
-
-
-/* =========================================
-   OPENED FLAP
-========================================= */
-
-.envelope.opened .envelope-flap {
-    transform:
-        rotateX(180deg);
-
-    z-index: 5;
-}
-
-
-/* =========================================
-   PAPER EMERGING
-========================================= */
-
-@keyframes letterComeOut {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            translate(-50%, 115%)
-            scale(.94);
-    }
-
-
-    15% {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, 95%)
-            scale(.95);
-    }
-
-
-    45% {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, 35%)
-            scale(1);
-    }
-
-
-    70% {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, -18%)
-            scale(1.025);
-    }
-
-
-    86% {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, -8%)
-            scale(1.01);
-    }
-
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, -12%)
-            scale(1);
-    }
-}
-
-
-/* =========================================
-   OPENED PAPER
-========================================= */
-
-.envelope.opened .envelope-paper {
-
-    opacity: 1;
-
-    z-index: 30;
-
-    animation:
-        letterComeOut
-        1.45s
-        cubic-bezier(.16, 1, .3, 1)
-        .65s
-        forwards;
-
-    pointer-events: auto;
-}
-
-
-/* =========================================
-   PAPER GLOW
-========================================= */
-
-@keyframes paperGlow {
-
-    0% {
-        filter:
-            drop-shadow(
-                0 10px 25px
-                rgba(255, 120, 190, .08)
-            );
-    }
-
-    50% {
-        filter:
-            drop-shadow(
-                0 18px 40px
-                rgba(255, 120, 190, .25)
-            );
-    }
-
-    100% {
-        filter:
-            drop-shadow(
-                0 10px 25px
-                rgba(255, 120, 190, .08)
-            );
-    }
-}
-
-.envelope.opened .envelope-paper {
-    animation:
-        letterComeOut
-        1.45s
-        cubic-bezier(.16, 1, .3, 1)
-        .65s
-        forwards;
-}
-
-
-/* =========================================
-   AFTER PAPER COMES OUT
-========================================= */
-
-.envelope.opened .envelope-paper.finished {
-    animation:
-        paperGlow
-        3s
-        ease-in-out
-        infinite;
-}
-
-
-/* =========================================
-   ENVELOPE GLOW
-========================================= */
-
-@keyframes envelopeGlow {
-
+@keyframes buttonGlow {
     0%,
     100% {
-        box-shadow:
-            0 18px 45px
-            rgba(255, 60, 160, .12);
-    }
-
-    50% {
-        box-shadow:
-            0 22px 60px
-            rgba(255, 60, 160, .30);
-    }
-}
-
-.envelope.opened {
-    animation:
-        envelopeGlow
-        3s
-        ease-in-out
-        infinite;
-}
-
-
-/* =========================================
-   HINT
-========================================= */
-
-@keyframes hintPulse {
-
-    0%,
-    100% {
-        opacity: .45;
-        transform: translateY(0);
+        opacity: .35;
+        transform: scale(1);
     }
 
     50% {
         opacity: 1;
-        transform: translateY(-4px);
+        transform: scale(1.025);
     }
 }
 
-
-/* =========================================
-   HEART
-========================================= */
 
 @keyframes heartBeat {
-
     0%,
     100% {
         transform: scale(1);
@@ -369,12 +53,21 @@
 }
 
 
-/* =========================================
-   FLOATING HEARTS
-========================================= */
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: .15;
+        transform: scale(.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
 
 @keyframes floatingHeart {
-
     0% {
         opacity: 0;
         transform:
@@ -407,39 +100,43 @@
 }
 
 
-/* =========================================
-   STARS
-========================================= */
-
-@keyframes twinkle {
-
+@keyframes wordFloat {
     0%,
     100% {
-        opacity: .15;
-        transform: scale(.7);
+        transform:
+            translateY(0)
+            rotate(0deg);
     }
 
     50% {
-        opacity: 1;
-        transform: scale(1.35);
+        transform:
+            translateY(-8px)
+            rotate(2deg);
     }
 }
 
 
-/* =========================================
-   REDUCED MOTION
-========================================= */
+@keyframes hintPulse {
+    0%,
+    100% {
+        opacity: .45;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-4px);
+    }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
     *::after {
-
         animation-duration: .01ms !important;
-
         animation-iteration-count: 1 !important;
-
         transition-duration: .01ms !important;
     }
-   }
+}
