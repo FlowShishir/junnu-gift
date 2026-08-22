@@ -1,0 +1,160 @@
+/* =========================================
+   LANDING ENTRANCE
+========================================= */
+
+@keyframes landingEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   HEART BEAT
+========================================= */
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(1.08);
+    }
+
+    18% {
+        transform: scale(1);
+    }
+
+    26% {
+        transform: scale(1.05);
+    }
+
+    34% {
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   BUTTON GLOW
+========================================= */
+
+@keyframes buttonGlow {
+
+    0%,
+    100% {
+        opacity: .2;
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+        opacity: .75;
+
+        transform:
+            scale(1.025);
+    }
+}
+
+
+/* =========================================
+   STAR TWINKLE
+========================================= */
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: .12;
+
+        transform:
+            scale(.7);
+    }
+
+    50% {
+        opacity: .9;
+
+        transform:
+            scale(1.4);
+    }
+}
+
+
+/* =========================================
+   FLOATING HEART
+========================================= */
+
+@keyframes floatingHeart {
+
+    from {
+        transform:
+            translateY(15vh)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .55;
+    }
+
+    85% {
+        opacity: .35;
+    }
+
+    to {
+        transform:
+            translateY(-120vh)
+            rotate(25deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   SECTION REVEAL
+========================================= */
+
+.sectionReveal {
+    animation:
+        sectionReveal
+        1s
+        ease
+        forwards;
+}
+
+
+@keyframes sectionReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+              }
