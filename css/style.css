@@ -1,0 +1,753 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 320px;
+    background: #070207;
+    color: #ffffff;
+
+    font-family:
+        "Noto Serif Bengali",
+        serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   BODY BACKGROUND
+========================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    z-index: -10;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(108, 9, 67, 0.55),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 20% 70%,
+            rgba(85, 7, 49, 0.25),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(93, 8, 62, 0.20),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            180deg,
+            #320b27 0%,
+            #180512 45%,
+            #050106 100%
+        );
+}
+
+
+/* =========================================
+   LANDING SCREEN
+========================================= */
+
+.landing-screen {
+    position: relative;
+
+    min-height: 100svh;
+    min-height: 100dvh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   LANDING CONTENT
+========================================= */
+
+.landing-content {
+    width: 92%;
+    max-width: 650px;
+
+    text-align: center;
+
+    position: relative;
+    z-index: 10;
+
+    padding: 40px 15px 80px;
+
+    animation:
+        landingEntrance
+        1.4s
+        ease
+        forwards;
+}
+
+
+/* =========================================
+   TOP TITLE
+========================================= */
+
+.top-title {
+    color: #f3dce9;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(
+            0.65rem,
+            2.8vw,
+            1rem
+        );
+
+    letter-spacing: 0.32em;
+
+    white-space: nowrap;
+
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 2px 15px
+        rgba(255,255,255,.08);
+}
+
+
+/* =========================================
+   NAME
+========================================= */
+
+.name-container {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 0;
+}
+
+
+.name {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-style: italic;
+
+    font-weight: 600;
+
+    font-size:
+        clamp(
+            4.8rem,
+            21vw,
+            9rem
+        );
+
+    line-height: .9;
+
+    color: #ff91c5;
+
+    text-shadow:
+
+        0 0 12px
+        rgba(255, 105, 180, .35),
+
+        0 0 40px
+        rgba(255, 63, 161, .18);
+}
+
+
+/* =========================================
+   BIG HEART
+========================================= */
+
+.big-heart {
+    font-family: Arial, sans-serif;
+
+    font-size:
+        clamp(
+            4rem,
+            18vw,
+            7.5rem
+        );
+
+    line-height: 1;
+
+    filter:
+        drop-shadow(
+            0 8px 15px
+            rgba(255, 20, 45, .25)
+        );
+
+    animation:
+        heartBeat
+        2.3s
+        ease-in-out
+        infinite;
+}
+
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.subtitle {
+    color: #f1dce7;
+
+    font-size:
+        clamp(
+            1rem,
+            4.2vw,
+            1.45rem
+        );
+
+    margin-top: 12px;
+
+    margin-bottom: 34px;
+
+    text-shadow:
+        0 3px 15px
+        rgba(0,0,0,.4);
+}
+
+
+/* =========================================
+   OPEN GIFT BUTTON
+========================================= */
+
+.open-gift-button {
+    position: relative;
+
+    width: min(88vw, 430px);
+
+    min-height: 72px;
+
+    border-radius: 999px;
+
+    border:
+        1px solid
+        rgba(255, 210, 234, .42);
+
+    outline: none;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    color: white;
+
+    font-family:
+        "Playfair Display",
+        "Noto Serif Bengali",
+        serif;
+
+    font-size:
+        clamp(
+            1.25rem,
+            5.2vw,
+            1.7rem
+        );
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fa4298,
+            #c12f7d
+        );
+
+    box-shadow:
+
+        0 15px 35px
+        rgba(244, 40, 142, .28),
+
+        0 0 35px
+        rgba(255, 61, 160, .22),
+
+        inset 0 1px 0
+        rgba(255,255,255,.35);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+
+.open-gift-button::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -5px;
+
+    border-radius: inherit;
+
+    border:
+        1px solid
+        rgba(255, 116, 188, .25);
+
+    animation:
+        buttonGlow
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+
+.open-gift-button:active {
+    transform: scale(.95);
+}
+
+
+.button-heart {
+    font-family: Arial, sans-serif;
+
+    font-size: 1.7em;
+
+    color: #ff8dc3;
+}
+
+
+/* =========================================
+   TAP HINT
+========================================= */
+
+.tap-hint {
+    margin-top: 18px;
+
+    color:
+        rgba(242, 211, 226, .72);
+
+    font-size: 1rem;
+}
+
+
+/* =========================================
+   AMBIENT LIGHTS
+========================================= */
+
+.ambient {
+    position: absolute;
+
+    width: 45vw;
+    height: 45vw;
+
+    max-width: 500px;
+    max-height: 500px;
+
+    border-radius: 50%;
+
+    filter: blur(80px);
+
+    opacity: .16;
+
+    pointer-events: none;
+}
+
+
+.ambient-1 {
+    top: 3%;
+    left: -15%;
+
+    background: #ff3f9d;
+}
+
+
+.ambient-2 {
+    right: -15%;
+    bottom: 5%;
+
+    background: #8d1d70;
+}
+
+
+/* =========================================
+   STARS
+========================================= */
+
+#stars {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+.star {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: .35;
+
+    animation:
+        twinkle
+        var(--duration)
+        ease-in-out
+        infinite;
+}
+
+
+/* =========================================
+   FLOATING HEARTS
+========================================= */
+
+#floatingHearts {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 2;
+
+    overflow: hidden;
+}
+
+
+.floating-heart {
+    position: absolute;
+
+    color:
+        rgba(255, 103, 177, .38);
+
+    font-family: Arial, sans-serif;
+
+    animation:
+        floatingHeart
+        var(--duration)
+        linear
+        infinite;
+}
+
+
+/* =========================================
+   GENERAL SECTION
+========================================= */
+
+.letter-section,
+.little-things-section {
+    min-height: 100svh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 70px 20px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(113, 16, 75, .35),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            180deg,
+            #080207,
+            #18050f
+        );
+}
+
+
+.section-container {
+    width: 92%;
+
+    max-width: 680px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   SECTION TITLE
+========================================= */
+
+.section-label {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color: #eab7cf;
+
+    font-size: .8rem;
+
+    letter-spacing: .28em;
+
+    margin-bottom: 8px;
+}
+
+
+.section-container > h2 {
+    color: #ff9dca;
+
+    font-size:
+        clamp(
+            2rem,
+            8vw,
+            3.6rem
+        );
+
+    margin-bottom: 30px;
+
+    text-shadow:
+        0 0 25px
+        rgba(255, 72, 163, .15);
+}
+
+
+/* =========================================
+   LETTER CARD
+========================================= */
+
+.letter-card {
+    padding:
+        32px
+        24px
+        30px;
+
+    border-radius: 25px;
+
+    border:
+        1px solid
+        rgba(255, 173, 215, .22);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.11),
+            rgba(255,255,255,.035)
+        );
+
+    box-shadow:
+
+        0 25px 70px
+        rgba(0,0,0,.4),
+
+        inset 0 1px 0
+        rgba(255,255,255,.08);
+
+    backdrop-filter:
+        blur(14px);
+}
+
+
+.letter-card-top {
+    font-size: 2rem;
+
+    margin-bottom: 12px;
+}
+
+
+.letter-card h3 {
+    color: #ff91c6;
+
+    font-size: 1.45rem;
+
+    margin-bottom: 22px;
+}
+
+
+.letter-text {
+    color: #f5e5ed;
+
+    font-size: 1.05rem;
+
+    line-height: 2;
+}
+
+
+.letter-text p {
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   CONTINUE BUTTON
+========================================= */
+
+.continue-button {
+    margin-top: 20px;
+
+    padding:
+        12px
+        24px;
+
+    border-radius: 999px;
+
+    border:
+        1px solid
+        rgba(255, 145, 202, .35);
+
+    color: white;
+
+    background:
+        rgba(245, 63, 148, .18);
+
+    cursor: pointer;
+
+    transition:
+        .25s ease;
+}
+
+
+.continue-button:active {
+    transform: scale(.95);
+}
+
+
+/* =========================================
+   LITTLE CARDS
+========================================= */
+
+.little-cards {
+    display: grid;
+
+    gap: 16px;
+}
+
+
+.little-card {
+    padding: 24px;
+
+    text-align: left;
+
+    border-radius: 22px;
+
+    border:
+        1px solid
+        rgba(255, 174, 216, .18);
+
+    background:
+        rgba(255,255,255,.055);
+
+    backdrop-filter:
+        blur(12px);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.25);
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease;
+}
+
+
+.little-card:active {
+    transform: scale(.97);
+}
+
+
+.card-number {
+    color: #ff75b5;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 1.7rem;
+}
+
+
+.little-card h3 {
+    margin:
+        8px 0;
+
+    color: #ffe6f1;
+
+    font-size: 1.25rem;
+}
+
+
+.little-card p {
+    color: #cfaebe;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   HIDDEN SECTION
+========================================= */
+
+.hidden-section {
+    display: none;
+}
+
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 700px) {
+
+    .open-gift-button:hover {
+        transform:
+            translateY(-3px)
+            scale(1.015);
+
+        box-shadow:
+
+            0 18px 45px
+            rgba(244, 40, 142, .35),
+
+            0 0 50px
+            rgba(255, 61, 160, .27);
+    }
+
+
+    .little-card:hover {
+        transform:
+            translateY(-5px);
+
+        border-color:
+            rgba(255, 174, 216, .35);
+    }
+
+          }
