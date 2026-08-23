@@ -1,8 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================================
+   Junnu Gift — Complete Script
+========================================= */
 
-    /* =========================================
-       ELEMENTS
-    ========================================= */
+document.addEventListener("DOMContentLoaded", () => {
 
     const landing = document.getElementById("landing");
     const letterSection = document.getElementById("letterSection");
@@ -12,27 +12,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const openGiftButton =
         document.getElementById("openGiftButton");
 
+    const continueButton =
+        document.getElementById("continueButton");
+
     const envelope =
         document.getElementById("envelope");
 
     const envelopeHint =
         document.getElementById("envelopeHint");
 
-    const continueButton =
-        document.getElementById("continueButton");
 
+    /* =====================================
+       BACKGROUND STARS
+    ====================================== */
 
-    /* =========================================
-       STARS
-    ========================================= */
+    const starsContainer =
+        document.getElementById("stars");
 
-    const stars = document.getElementById("stars");
-
-    if (stars) {
+    if (starsContainer) {
 
         for (let i = 0; i < 75; i++) {
 
-            const star = document.createElement("span");
+            const star =
+                document.createElement("span");
 
             star.className = "star";
 
@@ -43,10 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 `${Math.random() * 100}%`;
 
             const size =
-                `${Math.random() * 3 + 1}px`;
+                1 + Math.random() * 3;
 
-            star.style.width = size;
-            star.style.height = size;
+            star.style.width =
+                `${size}px`;
+
+            star.style.height =
+                `${size}px`;
 
             star.style.setProperty(
                 "--duration",
@@ -56,19 +61,19 @@ document.addEventListener("DOMContentLoaded", () => {
             star.style.animationDelay =
                 `${Math.random() * 4}s`;
 
-            stars.appendChild(star);
+            starsContainer.appendChild(star);
         }
     }
 
 
-    /* =========================================
+    /* =====================================
        FLOATING HEARTS
-    ========================================= */
+    ====================================== */
 
-    const floatingHearts =
+    const heartsContainer =
         document.getElementById("floatingHearts");
 
-    if (floatingHearts) {
+    if (heartsContainer) {
 
         for (let i = 0; i < 18; i++) {
 
@@ -79,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "floating-heart";
 
             heart.textContent =
-                Math.random() > 0.35
+                Math.random() > 0.45
                     ? "♡"
                     : "♥";
 
@@ -87,24 +92,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 `${Math.random() * 100}%`;
 
             heart.style.fontSize =
-                `${12 + Math.random() * 18}px`;
+                `${12 + Math.random() * 20}px`;
 
             heart.style.setProperty(
                 "--duration",
-                `${10 + Math.random() * 12}s`
+                `${9 + Math.random() * 9}s`
             );
 
             heart.style.animationDelay =
-                `${Math.random() * 12}s`;
+                `${Math.random() * 10}s`;
 
-            floatingHearts.appendChild(heart);
+            heartsContainer.appendChild(heart);
         }
     }
 
 
-    /* =========================================
+    /* =====================================
        OPEN GIFT
-    ========================================= */
+    ====================================== */
 
     if (openGiftButton) {
 
@@ -112,130 +117,85 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             () => {
 
-                landing.classList.add("hidden");
+                openGiftButton.disabled = true;
 
-                letterSection.classList.remove(
-                    "hidden"
-                );
+                landing.style.transition =
+                    "opacity .8s ease, transform .8s ease";
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
+                landing.style.opacity = "0";
+
+                landing.style.transform =
+                    "translateY(-25px) scale(.98)";
+
+
+                setTimeout(() => {
+
+                    landing.style.display = "none";
+
+                    letterSection.classList.remove(
+                        "hidden-section"
+                    );
+
+                    letterSection.classList.add(
+                        "section-reveal"
+                    );
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+
+                }, 650);
 
             }
         );
+
     }
 
 
-    /* =========================================
-       ENVELOPE
-    ========================================= */
+    /* =====================================
+       ENVELOPE / MAIN LETTER
+    ====================================== */
 
     if (envelope) {
 
-        function openEnvelope() {
-
-            if (
-                envelope.classList.contains(
-                    "opened"
-                )
-            ) {
-                return;
-            }
-
-            envelope.classList.add("opened");
-
-            if (envelopeHint) {
-                envelopeHint.classList.add("hide");
-            }
-        }
-
-
         envelope.addEventListener(
             "click",
-            (event) => {
+            () => {
 
-                /*
-                 * If the user taps the paper,
-                 * don't close/reopen the envelope.
-                 */
+                const opened =
+                    envelope.classList.toggle("opened");
 
-                if (
-                    event.target.closest(".paper")
-                ) {
-                    return;
+
+                if (opened) {
+
+                    if (envelopeHint) {
+
+                        envelopeHint.style.opacity =
+                            "0";
+
+                    }
+
+                } else {
+
+                    if (envelopeHint) {
+
+                        envelopeHint.style.opacity =
+                            "1";
+
+                    }
+
                 }
 
-                openEnvelope();
             }
         );
 
-
-        /* Keyboard support */
-
-        envelope.addEventListener(
-            "keydown",
-            (event) => {
-
-                if (
-                    event.key === "Enter" ||
-                    event.key === " "
-                ) {
-
-                    event.preventDefault();
-
-                    openEnvelope();
-                }
-            }
-        );
     }
 
 
-    /* =========================================
-       PAPER SCROLL
-    ========================================= */
-
-    const paper =
-        document.querySelector(".paper");
-
-    if (paper) {
-
-        /*
-         * Allow the letter to scroll
-         * without triggering envelope click.
-         */
-
-        paper.addEventListener(
-            "click",
-            (event) => {
-                event.stopPropagation();
-            }
-        );
-
-
-        paper.addEventListener(
-            "touchstart",
-            (event) => {
-                event.stopPropagation();
-            },
-            { passive: true }
-        );
-
-
-        paper.addEventListener(
-            "touchmove",
-            (event) => {
-                event.stopPropagation();
-            },
-            { passive: true }
-        );
-    }
-
-
-    /* =========================================
-       CONTINUE BUTTON
-    ========================================= */
+    /* =====================================
+       CONTINUE TO LITTLE THINGS
+    ====================================== */
 
     if (continueButton) {
 
@@ -243,129 +203,185 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             () => {
 
-                littleThingsSection.classList.remove(
-                    "hidden"
-                );
+                letterSection.style.transition =
+                    "opacity .7s ease";
+
+                letterSection.style.opacity =
+                    "0";
+
 
                 setTimeout(() => {
 
-                    littleThingsSection.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
+                    letterSection.style.display =
+                        "none";
+
+                    littleThingsSection.classList.remove(
+                        "hidden-section"
+                    );
+
+                    littleThingsSection.classList.add(
+                        "section-reveal"
+                    );
+
+                    littleThingsSection.style.opacity =
+                        "1";
+
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
                     });
 
-                }, 100);
+                }, 550);
 
             }
         );
+
     }
 
-});
-/* =========================================
-   LITTLE THINGS — SMALL LETTERS
-========================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+    /* =====================================
+       LITTLE THINGS — SMALL LETTERS
+    ====================================== */
 
     const littleCards =
         document.querySelectorAll(".little-card");
 
+
     littleCards.forEach((card) => {
 
-        card.addEventListener("click", () => {
+        card.addEventListener(
+            "click",
+            () => {
 
-            const targetId =
-                card.getAttribute("data-letter");
-
-            const targetLetter =
-                document.getElementById(targetId);
-
-
-            if (!targetLetter) return;
+                const targetId =
+                    card.getAttribute(
+                        "data-letter"
+                    );
 
 
-            const isAlreadyOpen =
-                targetLetter.classList.contains("open");
+                const targetLetter =
+                    document.getElementById(
+                        targetId
+                    );
 
 
-            /*
-             * Close every other letter
-             */
-
-            document
-                .querySelectorAll(".little-letter.open")
-                .forEach((letter) => {
-
-                    if (letter !== targetLetter) {
-                        letter.classList.remove("open");
-                    }
-
-                });
+                if (!targetLetter) return;
 
 
-            /*
-             * Remove active state
-             * from other cards
-             */
-
-            document
-                .querySelectorAll(".little-card.active")
-                .forEach((otherCard) => {
-
-                    if (otherCard !== card) {
-                        otherCard.classList.remove("active");
-                    }
-
-                });
+                const alreadyOpen =
+                    targetLetter.classList.contains(
+                        "open"
+                    );
 
 
-            /*
-             * Toggle current letter
-             */
+                /* -----------------------------
+                   Close other letters
+                ----------------------------- */
 
-            if (isAlreadyOpen) {
+                document
+                    .querySelectorAll(
+                        ".little-letter.open"
+                    )
+                    .forEach((letter) => {
 
-                targetLetter.classList.remove("open");
+                        if (
+                            letter !== targetLetter
+                        ) {
 
-                card.classList.remove("active");
+                            letter.classList.remove(
+                                "open"
+                            );
 
-            } else {
+                        }
 
-                targetLetter.classList.add("open");
-
-                card.classList.add("active");
+                    });
 
 
-                /*
-                 * Small smooth scroll so the
-                 * opened letter stays visible.
-                 */
+                /* -----------------------------
+                   Remove other active cards
+                ----------------------------- */
 
-                setTimeout(() => {
+                document
+                    .querySelectorAll(
+                        ".little-card.active"
+                    )
+                    .forEach((otherCard) => {
 
-                    const rect =
-                        targetLetter.getBoundingClientRect();
+                        if (
+                            otherCard !== card
+                        ) {
 
-                    const viewportHeight =
-                        window.innerHeight;
+                            otherCard.classList.remove(
+                                "active"
+                            );
 
-                    if (
-                        rect.bottom >
-                        viewportHeight - 20
-                    ) {
+                        }
 
-                        targetLetter.scrollIntoView({
-                            behavior: "smooth",
-                            block: "nearest"
-                        });
+                    });
 
-                    }
 
-                }, 180);
+                /* -----------------------------
+                   Toggle current letter
+                ----------------------------- */
+
+                if (alreadyOpen) {
+
+                    targetLetter.classList.remove(
+                        "open"
+                    );
+
+                    card.classList.remove(
+                        "active"
+                    );
+
+                } else {
+
+                    targetLetter.classList.add(
+                        "open"
+                    );
+
+                    card.classList.add(
+                        "active"
+                    );
+
+
+                    /* -------------------------
+                       Automatically bring
+                       the small letter into view
+                    ------------------------- */
+
+                    setTimeout(() => {
+
+                        const rect =
+                            targetLetter.getBoundingClientRect();
+
+
+                        if (
+                            rect.bottom >
+                            window.innerHeight - 20
+                        ) {
+
+                            window.scrollBy({
+
+                                top:
+                                    rect.bottom -
+                                    window.innerHeight +
+                                    35,
+
+                                behavior:
+                                    "smooth"
+
+                            });
+
+                        }
+
+                    }, 220);
+
+                }
 
             }
-
-        });
+        );
 
     });
 
