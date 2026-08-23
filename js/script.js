@@ -261,3 +261,112 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+/* =========================================
+   LITTLE THINGS — SMALL LETTERS
+========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const littleCards =
+        document.querySelectorAll(".little-card");
+
+    littleCards.forEach((card) => {
+
+        card.addEventListener("click", () => {
+
+            const targetId =
+                card.getAttribute("data-letter");
+
+            const targetLetter =
+                document.getElementById(targetId);
+
+
+            if (!targetLetter) return;
+
+
+            const isAlreadyOpen =
+                targetLetter.classList.contains("open");
+
+
+            /*
+             * Close every other letter
+             */
+
+            document
+                .querySelectorAll(".little-letter.open")
+                .forEach((letter) => {
+
+                    if (letter !== targetLetter) {
+                        letter.classList.remove("open");
+                    }
+
+                });
+
+
+            /*
+             * Remove active state
+             * from other cards
+             */
+
+            document
+                .querySelectorAll(".little-card.active")
+                .forEach((otherCard) => {
+
+                    if (otherCard !== card) {
+                        otherCard.classList.remove("active");
+                    }
+
+                });
+
+
+            /*
+             * Toggle current letter
+             */
+
+            if (isAlreadyOpen) {
+
+                targetLetter.classList.remove("open");
+
+                card.classList.remove("active");
+
+            } else {
+
+                targetLetter.classList.add("open");
+
+                card.classList.add("active");
+
+
+                /*
+                 * Small smooth scroll so the
+                 * opened letter stays visible.
+                 */
+
+                setTimeout(() => {
+
+                    const rect =
+                        targetLetter.getBoundingClientRect();
+
+                    const viewportHeight =
+                        window.innerHeight;
+
+                    if (
+                        rect.bottom >
+                        viewportHeight - 20
+                    ) {
+
+                        targetLetter.scrollIntoView({
+                            behavior: "smooth",
+                            block: "nearest"
+                        });
+
+                    }
+
+                }, 180);
+
+            }
+
+        });
+
+    });
+
+});
