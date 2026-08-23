@@ -1,390 +1,263 @@
-/* =========================================
-   Junnu Gift
-   Interactive Letter Animation
-========================================= */
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =========================================
+       ELEMENTS
+    ========================================= */
+
+    const landing = document.getElementById("landing");
+    const letterSection = document.getElementById("letterSection");
+    const littleThingsSection =
+        document.getElementById("littleThingsSection");
+
+    const openGiftButton =
+        document.getElementById("openGiftButton");
+
+    const envelope =
+        document.getElementById("envelope");
+
+    const envelopeHint =
+        document.getElementById("envelopeHint");
+
+    const continueButton =
+        document.getElementById("continueButton");
 
 
-/* =========================================
-   ELEMENTS
-========================================= */
+    /* =========================================
+       STARS
+    ========================================= */
 
-const landing =
-    document.getElementById("landing");
+    const stars = document.getElementById("stars");
 
-const openGiftButton =
-    document.getElementById("openGiftButton");
+    if (stars) {
 
-const letterSection =
-    document.getElementById("letterSection");
+        for (let i = 0; i < 75; i++) {
 
-const loveEnvelope =
-    document.getElementById("loveEnvelope");
+            const star = document.createElement("span");
 
-const letterSeal =
-    document.getElementById("letterSeal");
+            star.className = "star";
 
-const letterStage =
-    document.querySelector(".letter-stage");
+            star.style.left =
+                `${Math.random() * 100}%`;
 
-const closeLetter =
-    document.getElementById("closeLetter");
+            star.style.top =
+                `${Math.random() * 100}%`;
 
-const stars =
-    document.getElementById("stars");
+            const size =
+                `${Math.random() * 3 + 1}px`;
 
-const floatingHearts =
-    document.getElementById("floatingHearts");
+            star.style.width = size;
+            star.style.height = size;
 
-
-/* =========================================
-   STARS
-========================================= */
-
-function createStars() {
-
-    if (!stars) return;
-
-    for (let i = 0; i < 55; i++) {
-
-        const star =
-            document.createElement("span");
-
-        star.className = "star";
-
-        star.style.left =
-            Math.random() * 100 + "%";
-
-        star.style.top =
-            Math.random() * 100 + "%";
-
-        star.style.setProperty(
-            "--duration",
-            (2 + Math.random() * 4) + "s"
-        );
-
-        star.style.animationDelay =
-            (Math.random() * 4) + "s";
-
-        stars.appendChild(star);
-    }
-}
-
-
-/* =========================================
-   FLOATING HEARTS
-========================================= */
-
-function createFloatingHearts() {
-
-    if (!floatingHearts) return;
-
-    const hearts = [
-        "♡",
-        "♥",
-        "♡",
-        "❤"
-    ];
-
-    for (let i = 0; i < 18; i++) {
-
-        const heart =
-            document.createElement("span");
-
-        heart.className =
-            "floating-heart";
-
-        heart.textContent =
-            hearts[
-                Math.floor(
-                    Math.random() * hearts.length
-                )
-            ];
-
-        heart.style.left =
-            Math.random() * 100 + "%";
-
-        heart.style.bottom =
-            (-10 - Math.random() * 20) + "%";
-
-        heart.style.fontSize =
-            (12 + Math.random() * 20) + "px";
-
-        heart.style.setProperty(
-            "--duration",
-            (8 + Math.random() * 8) + "s"
-        );
-
-        heart.style.animationDelay =
-            (Math.random() * 8) + "s";
-
-        floatingHearts.appendChild(heart);
-    }
-}
-
-
-/* =========================================
-   OPEN GIFT
-========================================= */
-
-openGiftButton.addEventListener(
-    "click",
-    function () {
-
-        openGiftButton.disabled = true;
-
-        landing.style.transition =
-            "opacity 0.8s ease, transform 0.8s ease";
-
-        landing.style.opacity = "0";
-
-        landing.style.transform =
-            "scale(1.05)";
-
-        setTimeout(() => {
-
-            landing.style.display =
-                "none";
-
-            letterSection.classList.remove(
-                "hidden-section"
+            star.style.setProperty(
+                "--duration",
+                `${2 + Math.random() * 4}s`
             );
 
-            letterSection.scrollIntoView({
-                behavior: "smooth"
-            });
+            star.style.animationDelay =
+                `${Math.random() * 4}s`;
 
-        }, 750);
-
-    }
-);
-
-
-/* =========================================
-   OPEN LETTER
-========================================= */
-
-function openLetter() {
-
-    if (
-        loveEnvelope.classList.contains(
-            "opened"
-        )
-    ) {
-        return;
-    }
-
-    loveEnvelope.classList.add(
-        "opened"
-    );
-
-    letterStage.classList.add(
-        "opened"
-    );
-
-
-    /* small vibration on supported phones */
-
-    if (
-        navigator.vibrate
-    ) {
-
-        navigator.vibrate([
-            20,
-            30,
-            20
-        ]);
-
-    }
-
-
-    /* create burst hearts */
-
-    createHeartBurst();
-
-}
-
-
-/* =========================================
-   SEAL CLICK
-========================================= */
-
-letterSeal.addEventListener(
-    "click",
-    function (event) {
-
-        event.stopPropagation();
-
-        openLetter();
-
-    }
-);
-
-
-/* =========================================
-   ENVELOPE CLICK
-========================================= */
-
-loveEnvelope.addEventListener(
-    "click",
-    function (event) {
-
-        if (
-            event.target === letterSeal
-        ) {
-            return;
+            stars.appendChild(star);
         }
-
-        if (
-            !loveEnvelope.classList.contains(
-                "opened"
-            )
-        ) {
-
-            openLetter();
-
-        }
-
     }
-);
 
 
-/* =========================================
-   CLOSE LETTER
-========================================= */
+    /* =========================================
+       FLOATING HEARTS
+    ========================================= */
 
-closeLetter.addEventListener(
-    "click",
-    function () {
+    const floatingHearts =
+        document.getElementById("floatingHearts");
 
-        loveEnvelope.classList.remove(
-            "opened"
-        );
+    if (floatingHearts) {
 
-        letterStage.classList.remove(
-            "opened"
-        );
+        for (let i = 0; i < 18; i++) {
 
-    }
-);
+            const heart =
+                document.createElement("span");
 
+            heart.className =
+                "floating-heart";
 
-/* =========================================
-   HEART BURST
-========================================= */
+            heart.textContent =
+                Math.random() > 0.35
+                    ? "♡"
+                    : "♥";
 
-function createHeartBurst() {
+            heart.style.left =
+                `${Math.random() * 100}%`;
 
-    const symbols = [
-        "❤️",
-        "💗",
-        "💕",
-        "♡"
-    ];
+            heart.style.fontSize =
+                `${12 + Math.random() * 18}px`;
 
-    for (let i = 0; i < 14; i++) {
-
-        const heart =
-            document.createElement(
-                "span"
+            heart.style.setProperty(
+                "--duration",
+                `${10 + Math.random() * 12}s`
             );
 
-        heart.textContent =
-            symbols[
-                Math.floor(
-                    Math.random() *
-                    symbols.length
+            heart.style.animationDelay =
+                `${Math.random() * 12}s`;
+
+            floatingHearts.appendChild(heart);
+        }
+    }
+
+
+    /* =========================================
+       OPEN GIFT
+    ========================================= */
+
+    if (openGiftButton) {
+
+        openGiftButton.addEventListener(
+            "click",
+            () => {
+
+                landing.classList.add("hidden");
+
+                letterSection.classList.remove(
+                    "hidden"
+                );
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+    }
+
+
+    /* =========================================
+       ENVELOPE
+    ========================================= */
+
+    if (envelope) {
+
+        function openEnvelope() {
+
+            if (
+                envelope.classList.contains(
+                    "opened"
                 )
-            ];
+            ) {
+                return;
+            }
 
-        heart.style.position =
-            "fixed";
+            envelope.classList.add("opened");
 
-        heart.style.left =
-            "50%";
+            if (envelopeHint) {
+                envelopeHint.classList.add("hide");
+            }
+        }
 
-        heart.style.top =
-            "55%";
 
-        heart.style.zIndex =
-            "9999";
+        envelope.addEventListener(
+            "click",
+            (event) => {
 
-        heart.style.pointerEvents =
-            "none";
+                /*
+                 * If the user taps the paper,
+                 * don't close/reopen the envelope.
+                 */
 
-        heart.style.fontSize =
-            (14 + Math.random() * 18) +
-            "px";
-
-        const angle =
-            Math.random() * Math.PI * 2;
-
-        const distance =
-            70 + Math.random() * 130;
-
-        const x =
-            Math.cos(angle) *
-            distance;
-
-        const y =
-            Math.sin(angle) *
-            distance;
-
-        heart.animate(
-            [
-                {
-                    transform:
-                        "translate(-50%, -50%) scale(.4)",
-                    opacity: 0
-                },
-
-                {
-                    transform:
-                        "translate(" +
-                        x +
-                        "px, " +
-                        y +
-                        "px) scale(1)",
-                    opacity: 1
-                },
-
-                {
-                    transform:
-                        "translate(" +
-                        (x * 1.5) +
-                        "px, " +
-                        (y * 1.5) +
-                        "px) scale(.5)",
-                    opacity: 0
+                if (
+                    event.target.closest(".paper")
+                ) {
+                    return;
                 }
-            ],
-            {
-                duration:
-                    900 +
-                    Math.random() * 500,
 
-                easing:
-                    "cubic-bezier(.16,1,.3,1)"
+                openEnvelope();
             }
         );
 
-        document.body.appendChild(
-            heart
+
+        /* Keyboard support */
+
+        envelope.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    openEnvelope();
+                }
+            }
+        );
+    }
+
+
+    /* =========================================
+       PAPER SCROLL
+    ========================================= */
+
+    const paper =
+        document.querySelector(".paper");
+
+    if (paper) {
+
+        /*
+         * Allow the letter to scroll
+         * without triggering envelope click.
+         */
+
+        paper.addEventListener(
+            "click",
+            (event) => {
+                event.stopPropagation();
+            }
         );
 
-        setTimeout(() => {
 
-            heart.remove();
+        paper.addEventListener(
+            "touchstart",
+            (event) => {
+                event.stopPropagation();
+            },
+            { passive: true }
+        );
 
-        }, 1600);
 
+        paper.addEventListener(
+            "touchmove",
+            (event) => {
+                event.stopPropagation();
+            },
+            { passive: true }
+        );
     }
-}
 
 
-/* =========================================
-   INITIALIZE
-========================================= */
+    /* =========================================
+       CONTINUE BUTTON
+    ========================================= */
 
-createStars();
+    if (continueButton) {
 
-createFloatingHearts();
+        continueButton.addEventListener(
+            "click",
+            () => {
+
+                littleThingsSection.classList.remove(
+                    "hidden"
+                );
+
+                setTimeout(() => {
+
+                    littleThingsSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }, 100);
+
+            }
+        );
+    }
+
+});
