@@ -1,5 +1,6 @@
 /* =========================================
-   JUNNU GIFT — MAIN JAVASCRIPT
+   Junnu Gift
+   Interactive Letter Animation
 ========================================= */
 
 
@@ -7,26 +8,26 @@
    ELEMENTS
 ========================================= */
 
-const openGiftButton =
-    document.getElementById("openGiftButton");
-
 const landing =
     document.getElementById("landing");
+
+const openGiftButton =
+    document.getElementById("openGiftButton");
 
 const letterSection =
     document.getElementById("letterSection");
 
-const envelope =
-    document.getElementById("envelope");
+const loveEnvelope =
+    document.getElementById("loveEnvelope");
 
-const envelopeHint =
-    document.getElementById("envelopeHint");
+const letterSeal =
+    document.getElementById("letterSeal");
 
-const continueButton =
-    document.getElementById("continueButton");
+const letterStage =
+    document.querySelector(".letter-stage");
 
-const littleThingsSection =
-    document.getElementById("littleThingsSection");
+const closeLetter =
+    document.getElementById("closeLetter");
 
 const stars =
     document.getElementById("stars");
@@ -36,16 +37,14 @@ const floatingHearts =
 
 
 /* =========================================
-   CREATE STARS
+   STARS
 ========================================= */
 
-function createStars(amount = 65) {
+function createStars() {
 
     if (!stars) return;
 
-    stars.innerHTML = "";
-
-    for (let i = 0; i < amount; i++) {
+    for (let i = 0; i < 55; i++) {
 
         const star =
             document.createElement("span");
@@ -53,16 +52,18 @@ function createStars(amount = 65) {
         star.className = "star";
 
         star.style.left =
-            `${Math.random() * 100}%`;
+            Math.random() * 100 + "%";
 
         star.style.top =
-            `${Math.random() * 100}%`;
+            Math.random() * 100 + "%";
+
+        star.style.setProperty(
+            "--duration",
+            (2 + Math.random() * 4) + "s"
+        );
 
         star.style.animationDelay =
-            `${Math.random() * 4}s`;
-
-        star.style.animationDuration =
-            `${1.5 + Math.random() * 4}s`;
+            (Math.random() * 4) + "s";
 
         stars.appendChild(star);
     }
@@ -70,16 +71,21 @@ function createStars(amount = 65) {
 
 
 /* =========================================
-   CREATE FLOATING HEARTS
+   FLOATING HEARTS
 ========================================= */
 
-function createFloatingHearts(amount = 15) {
+function createFloatingHearts() {
 
     if (!floatingHearts) return;
 
-    floatingHearts.innerHTML = "";
+    const hearts = [
+        "♡",
+        "♥",
+        "♡",
+        "❤"
+    ];
 
-    for (let i = 0; i < amount; i++) {
+    for (let i = 0; i < 18; i++) {
 
         const heart =
             document.createElement("span");
@@ -88,24 +94,28 @@ function createFloatingHearts(amount = 15) {
             "floating-heart";
 
         heart.textContent =
-            Math.random() > 0.45
-                ? "♥"
-                : "♡";
+            hearts[
+                Math.floor(
+                    Math.random() * hearts.length
+                )
+            ];
 
         heart.style.left =
-            `${Math.random() * 100}%`;
+            Math.random() * 100 + "%";
 
-        heart.style.top =
-            `${75 + Math.random() * 25}%`;
+        heart.style.bottom =
+            (-10 - Math.random() * 20) + "%";
 
         heart.style.fontSize =
-            `${12 + Math.random() * 18}px`;
+            (12 + Math.random() * 20) + "px";
+
+        heart.style.setProperty(
+            "--duration",
+            (8 + Math.random() * 8) + "s"
+        );
 
         heart.style.animationDelay =
-            `${Math.random() * 8}s`;
-
-        heart.style.animationDuration =
-            `${7 + Math.random() * 7}s`;
+            (Math.random() * 8) + "s";
 
         floatingHearts.appendChild(heart);
     }
@@ -113,269 +123,268 @@ function createFloatingHearts(amount = 15) {
 
 
 /* =========================================
-   SHOW SECTION
+   OPEN GIFT
 ========================================= */
 
-function showSection(section) {
+openGiftButton.addEventListener(
+    "click",
+    function () {
 
-    if (!section) return;
+        openGiftButton.disabled = true;
 
-    section.classList.remove(
-        "hidden-section"
-    );
+        landing.style.transition =
+            "opacity 0.8s ease, transform 0.8s ease";
 
-    section.classList.add(
-        "sectionReveal"
-    );
-}
+        landing.style.opacity = "0";
 
+        landing.style.transform =
+            "scale(1.05)";
 
-/* =========================================
-   OPEN YOUR GIFT
-========================================= */
+        setTimeout(() => {
 
-if (openGiftButton) {
-
-    openGiftButton.addEventListener(
-        "click",
-        () => {
-
-            if (
-                openGiftButton.disabled
-            ) {
-                return;
-            }
-
-            openGiftButton.disabled = true;
-
-
-            /* Landing fade */
-
-            if (landing) {
-
-                landing.style.transition =
-                    "opacity 1s ease, transform 1s ease";
-
-                landing.style.opacity =
-                    "0";
-
-                landing.style.transform =
-                    "scale(1.04)";
-            }
-
-
-            /*
-             * Wait for landing animation
-             */
-
-            setTimeout(() => {
-
-                if (landing) {
-
-                    landing.style.display =
-                        "none";
-                }
-
-
-                /*
-                 * Show letter section
-                 */
-
-                showSection(
-                    letterSection
-                );
-
-
-                /*
-                 * Scroll smoothly
-                 */
-
-                setTimeout(() => {
-
-                    if (letterSection) {
-
-                        letterSection.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start"
-                        });
-
-                    }
-
-                }, 120);
-
-            }, 900);
-
-        }
-    );
-}
-
-
-/* =========================================
-   ENVELOPE OPEN
-========================================= */
-
-if (envelope) {
-
-    envelope.addEventListener(
-        "click",
-        () => {
-
-            /*
-             * Already opened?
-             */
-
-            if (
-                envelope.classList.contains(
-                    "opened"
-                )
-            ) {
-                return;
-            }
-
-
-            /*
-             * Prevent multiple taps
-             */
-
-            envelope.style.pointerEvents =
+            landing.style.display =
                 "none";
 
-
-            /*
-             * =================================
-             * STEP 1
-             * Envelope opens
-             * =================================
-             */
-
-            envelope.classList.add(
-                "opened"
+            letterSection.classList.remove(
+                "hidden-section"
             );
 
+            letterSection.scrollIntoView({
+                behavior: "smooth"
+            });
 
-            /*
-             * Change instruction text
-             */
+        }, 750);
 
-            if (envelopeHint) {
-
-                envelopeHint.style.transition =
-                    "opacity .4s ease";
-
-                envelopeHint.style.opacity =
-                    "0";
-
-
-                setTimeout(() => {
-
-                    envelopeHint.textContent =
-                        "তোমার জন্য একটা ছোট্ট চিঠি... ❤️";
-
-                    envelopeHint.style.opacity =
-                        "1";
-
-                }, 850);
-
-            }
-
-
-            /*
-             * =================================
-             * STEP 2
-             * Paper comes out automatically
-             *
-             * CSS handles the actual movement.
-             * We only add the final glow class
-             * after the animation finishes.
-             * =================================
-             */
-
-            setTimeout(() => {
-
-                const paper =
-                    envelope.querySelector(
-                        ".envelope-paper"
-                    );
-
-
-                if (paper) {
-
-                    paper.classList.add(
-                        "finished"
-                    );
-
-                }
-
-            }, 2300);
-
-        }
-    );
-}
+    }
+);
 
 
 /* =========================================
-   CONTINUE / MORE BUTTON
+   OPEN LETTER
 ========================================= */
 
-if (continueButton) {
+function openLetter() {
 
-    continueButton.addEventListener(
-        "click",
-        () => {
+    if (
+        loveEnvelope.classList.contains(
+            "opened"
+        )
+    ) {
+        return;
+    }
 
-            /*
-             * Show next section
-             */
-
-            showSection(
-                littleThingsSection
-            );
-
-
-            /*
-             * Scroll to next section
-             */
-
-            setTimeout(() => {
-
-                if (
-                    littleThingsSection
-                ) {
-
-                    littleThingsSection.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                }
-
-            }, 120);
-
-        }
+    loveEnvelope.classList.add(
+        "opened"
     );
+
+    letterStage.classList.add(
+        "opened"
+    );
+
+
+    /* small vibration on supported phones */
+
+    if (
+        navigator.vibrate
+    ) {
+
+        navigator.vibrate([
+            20,
+            30,
+            20
+        ]);
+
+    }
+
+
+    /* create burst hearts */
+
+    createHeartBurst();
+
 }
 
 
 /* =========================================
-   INITIALIZE WEBSITE
+   SEAL CLICK
+========================================= */
+
+letterSeal.addEventListener(
+    "click",
+    function (event) {
+
+        event.stopPropagation();
+
+        openLetter();
+
+    }
+);
+
+
+/* =========================================
+   ENVELOPE CLICK
+========================================= */
+
+loveEnvelope.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target === letterSeal
+        ) {
+            return;
+        }
+
+        if (
+            !loveEnvelope.classList.contains(
+                "opened"
+            )
+        ) {
+
+            openLetter();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   CLOSE LETTER
+========================================= */
+
+closeLetter.addEventListener(
+    "click",
+    function () {
+
+        loveEnvelope.classList.remove(
+            "opened"
+        );
+
+        letterStage.classList.remove(
+            "opened"
+        );
+
+    }
+);
+
+
+/* =========================================
+   HEART BURST
+========================================= */
+
+function createHeartBurst() {
+
+    const symbols = [
+        "❤️",
+        "💗",
+        "💕",
+        "♡"
+    ];
+
+    for (let i = 0; i < 14; i++) {
+
+        const heart =
+            document.createElement(
+                "span"
+            );
+
+        heart.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+        heart.style.position =
+            "fixed";
+
+        heart.style.left =
+            "50%";
+
+        heart.style.top =
+            "55%";
+
+        heart.style.zIndex =
+            "9999";
+
+        heart.style.pointerEvents =
+            "none";
+
+        heart.style.fontSize =
+            (14 + Math.random() * 18) +
+            "px";
+
+        const angle =
+            Math.random() * Math.PI * 2;
+
+        const distance =
+            70 + Math.random() * 130;
+
+        const x =
+            Math.cos(angle) *
+            distance;
+
+        const y =
+            Math.sin(angle) *
+            distance;
+
+        heart.animate(
+            [
+                {
+                    transform:
+                        "translate(-50%, -50%) scale(.4)",
+                    opacity: 0
+                },
+
+                {
+                    transform:
+                        "translate(" +
+                        x +
+                        "px, " +
+                        y +
+                        "px) scale(1)",
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        "translate(" +
+                        (x * 1.5) +
+                        "px, " +
+                        (y * 1.5) +
+                        "px) scale(.5)",
+                    opacity: 0
+                }
+            ],
+            {
+                duration:
+                    900 +
+                    Math.random() * 500,
+
+                easing:
+                    "cubic-bezier(.16,1,.3,1)"
+            }
+        );
+
+        document.body.appendChild(
+            heart
+        );
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        }, 1600);
+
+    }
+}
+
+
+/* =========================================
+   INITIALIZE
 ========================================= */
 
 createStars();
 
 createFloatingHearts();
-
-
-/* =========================================
-   PAGE LOAD
-========================================= */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        document.body.classList.add(
-            "page-loaded"
-        );
-
-    }
-);
