@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junnu ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="stars"></div>
+    <div id="floatingHearts"></div>
+    <div class="ambient ambient-1"></div>
+    <div class="ambient ambient-2"></div>
+
+    <!-- LANDING -->
+    <main id="landing" class="landing-screen">
+        <div class="landing-content">
+            <div class="top-title">A TINY SURPRISE, MADE WITH LOVE</div>
+
+            <div class="name-container">
+                <div class="name">Junnu</div>
+                <div class="big-heart">❤️</div>
+            </div>
+
+            <div class="subtitle">একটা ছোট উপহার... শুধু তোমার জন্য।</div>
+
+            <button id="openGiftButton" class="open-gift-button" type="button">
+                <span class="button-heart">💗</span>
+                <span>Open Your Gift</span>
+            </button>
+
+            <div class="tap-hint">একবার চাপ দাও...</div>
+        </div>
+    </main>
+
+    <!-- LETTER -->
+    <section id="letterSection" class="letter-section hidden">
+        <div class="section-container">
+            <div class="section-label">A LITTLE LETTER</div>
+            <h2>একটা কথা ছিল...</h2>
+
+            <div class="letter-stage">
+                <div class="floating-word word-1">love</div>
+                <div class="floating-word word-2">dear</div>
+                <div class="floating-word word-3">smile</div>
+                <div class="floating-word word-4">you</div>
+
+                <!-- ENVELOPE -->
+                <div id="envelope" class="envelope" role="button" tabindex="0" aria-label="চিঠি খুলুন">
+                    <div class="envelope-back"></div>
+
+                    <!-- Paper is completely hidden behind the envelope while closed -->
+                    <div class="paper">
+                        <div class="paper-inner">
+                            <div class="paper-decoration">♡ ♥ ♡ ♥</div>
+                            <h3>আমার প্রিয় মানুষ,</h3>
+
+                            <div class="letter-text">
+                                <p>জানো, কিছু মানুষ জীবনে হঠাৎ করে আসে...</p>
+
+                                <p>তারপর ধীরে ধীরে তারা আমাদের প্রতিদিনের ভাবনার একটা অংশ হয়ে যায়। তোমার ক্ষেত্রেও ঠিক এমনটাই হয়েছে।</p>
+
+                                <p>কখন যে তোমার সাথে কথা বলা, তোমার কথা ভাবা আর তোমার একটা ছোট হাসিও আমার দিনের সবচেয়ে সুন্দর মুহূর্ত হয়ে গেছে, সেটা আমি নিজেও বুঝিনি।</p>
+
+                                <p>হয়তো সবসময় মনের কথা বলা হয়ে ওঠে না। হয়তো কখনও দূরত্ব থাকে, কখনও অভিমান থাকে, কখনও অনেকটা সময় কথা না বলেও কেটে যায়।</p>
+
+                                <p>কিন্তু কিছু মানুষকে মন থেকে সরানো যায় না। তুমি ঠিক তেমনই একজন।</p>
+
+                                <p>আমি জানি না ভবিষ্যতে আমাদের গল্প কোথায় গিয়ে থামবে। শুধু এটুকু জানি—আমার জীবনের গল্পে তোমার একটা সুন্দর অধ্যায় আমি সবসময় মনে রাখব।</p>
+
+                                <p>আর যদি কখনও মনে হয় তুমি একা, মনে রেখো—পৃথিবীর কোথাও একজন মানুষ তোমার হাসিটাকে সত্যিই খুব সুন্দর মনে করে।</p>
+
+                                <p>ভালো থেকো সবসময়। নিজের যত্ন নিও। আর তোমার সেই সুন্দর হাসিটা কখনও হারিয়ে ফেলো না। ❤️</p>
+                            </div>
+
+                            <div class="paper-signature">— শুধু তোমার জন্য ❤️</div>
+                        </div>
+                    </div>
+
+                    <!-- Flap -->
+                    <div class="envelope-flap"></div>
+
+                    <!-- Front pocket -->
+                    <div class="envelope-front"></div>
+
+                    <div class="envelope-heart">❤️</div>
+                </div>
+
+                <div id="envelopeHint" class="envelope-hint">
+                    চিঠিটা খুলে দেখো... 💌
+                </div>
+            </div>
+
+            <button id="continueButton" class="continue-button" type="button">
+                আরও একটু দেখো ❤️
+            </button>
+        </div>
+    </section>
+
+    <!-- LITTLE THINGS -->
+    <section id="littleThingsSection" class="little-things-section hidden">
+        <div class="section-container">
+            <div class="section-label">LITTLE THINGS</div>
+            <h2>তোমার জন্য কিছু কথা ❤️</h2>
+
+            <div class="little-cards">
+                <div class="little-card">
+                    <div class="card-number">01</div>
+                    <h3>তোমার হাসি</h3>
+                    <p>তোমার হাসিটা আমার কাছে পৃথিবীর সবচেয়ে সুন্দর জিনিসগুলোর একটা।</p>
+                </div>
+
+                <div class="little-card">
+                    <div class="card-number">02</div>
+                    <h3>তোমার উপস্থিতি</h3>
+                    <p>তুমি কাছে থাকো বা দূরে, তোমার একটা আলাদা জায়গা সবসময়ই থেকে যায়।</p>
+                </div>
+
+                <div class="little-card">
+                    <div class="card-number">03</div>
+                    <h3>শুধু তুমি</h3>
+                    <p>অনেক মানুষের ভিড়েও কিছু মানুষ আলাদা হয়। তুমি ঠিক তেমনই একজন।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
